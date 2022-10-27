@@ -23,11 +23,14 @@ class Button():
             screen.blit(self.text, (self.x + self.width/2 - 6.1*len(self.string), self.y + self.height/2 - 10))
 
     def checkHover(self):
-        if pygame.mouse.get_pos()[0] > self.x and pygame.mouse.get_pos()[0] < self.x + self.width and pygame.mouse.get_pos()[1] > self.y and pygame.mouse.get_pos()[1] < self.y + self.height:
-            return True
+        if pygame.mouse.get_pos()[0] > self.x:
+            if pygame.mouse.get_pos()[0] < self.x + self.width:
+                if pygame.mouse.get_pos()[1] > self.y:
+                    if pygame.mouse.get_pos()[1] < self.y + self.height:
+                        return True
         else:
             return False
 
-    def setText(self, newstring):
-        self.string = newstring
-        self.text = pygame.font.Font('freesansbold.ttf', 20).render(newstring, 1, (255, 255, 255))
+    def setText(self, newString):
+        self.string = newString
+        self.text = pygame.font.Font('freesansbold.ttf', 20).render(newString, 1, (255, 255, 255))
