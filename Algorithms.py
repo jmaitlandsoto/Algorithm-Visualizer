@@ -1,6 +1,7 @@
 import pygame
 import time
 
+
 class Algorithm():
     def __init__(self, arr):
         self.arr = arr
@@ -9,7 +10,7 @@ class Algorithm():
     def sort(self, screen):
         print("sort")
 
-    def finale(self,screen):
+    def finale(self, screen):
         for i in range(len(self.arr)):
             time.sleep(0.02)
             for j in range(len(self.arr)):
@@ -17,8 +18,9 @@ class Algorithm():
                     pygame.draw.rect(screen, (0, 200, 0),
                                      [int(400 - (self.arr[j] * 400 / len(self.arr))), int(j * 600 / len(self.arr)),
                                       int(self.arr[j] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
-                    text = self.font.render(str(self.arr[j]), 1, (255,255,255))
-                    screen.blit(text,(int(400+(self.arr[j]*800/len(self.arr)/2)),int(j * 600 / len(self.arr))))
+                    text = self.font.render(str(self.arr[j]), 1, (255, 255, 255))
+                    screen.blit(text,
+                                (int(400 + (self.arr[j] * 800 / len(self.arr) / 2)), int(j * 600 / len(self.arr))))
                 elif j == i:
                     pygame.draw.rect(screen, (0, 0, 0),
                                      [int(400 - (self.arr[j] * 400 / len(self.arr))), int(j * 600 / len(self.arr)),
@@ -33,6 +35,7 @@ class Algorithm():
                              [int(400 - (self.arr[j] * 400 / len(self.arr))), int(j * 600 / len(self.arr)),
                               int(self.arr[j] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
         time.sleep(2)
+
     def clear_screen(self, screen):
         pygame.draw.rect(screen, (0, 0, 0), [0, 0, 1200, 800], 0)
 
@@ -44,10 +47,11 @@ class Algorithm():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print("click")
 
+
 class BubbleSort(Algorithm):
     def __init__(self, arr):
         super().__init__(arr)
-    
+
     def sort(self, screen):
 
         sorted = False
@@ -59,32 +63,36 @@ class BubbleSort(Algorithm):
                     self.clear_screen(screen)
                     for j in range(len(self.arr)):
                         if j < i:
-                            pygame.draw.rect(screen, (100,100,100),
-                                             [int(400 - (self.arr[j] * 400 / len(self.arr))), int(j * 600 / len(self.arr)),
+                            pygame.draw.rect(screen, (100, 100, 100),
+                                             [int(400 - (self.arr[j] * 400 / len(self.arr))),
+                                              int(j * 600 / len(self.arr)),
                                               int(self.arr[j] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
                             text = self.font.render(str(self.arr[j]), 1, (255, 255, 255))
                             screen.blit(text, (
-                            int(400 + (self.arr[j] * 800 / len(self.arr) / 2)), int(j * 600 / len(self.arr))))
+                                int(400 + (self.arr[j] * 800 / len(self.arr) / 2)), int(j * 600 / len(self.arr))))
 
                         elif j == i:
                             pygame.draw.rect(screen, (255, 0, 0),
-                                             [int(400 - (self.arr[j] * 400 / len(self.arr))), int(j * 600 / len(self.arr)),
+                                             [int(400 - (self.arr[j] * 400 / len(self.arr))),
+                                              int(j * 600 / len(self.arr)),
                                               int(self.arr[j] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
                             text = self.font.render(str(self.arr[j]), 1, (255, 255, 255))
                             screen.blit(text, (
-                            int(400 + (self.arr[j] * 800 / len(self.arr) / 2)), int(j * 600 / len(self.arr))))
+                                int(400 + (self.arr[j] * 800 / len(self.arr) / 2)), int(j * 600 / len(self.arr))))
                         else:
-                            pygame.draw.rect(screen, (255,255,255),
-                                             [int(400 - (self.arr[j] * 400 / len(self.arr))), int(j * 600 / len(self.arr)),
+                            pygame.draw.rect(screen, (255, 255, 255),
+                                             [int(400 - (self.arr[j] * 400 / len(self.arr))),
+                                              int(j * 600 / len(self.arr)),
                                               int(self.arr[j] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
                             text = self.font.render(str(self.arr[j]), 1, (255, 255, 255))
                             screen.blit(text, (
-                            int(400 + (self.arr[j] * 800 / len(self.arr) / 2)), int(j * 600 / len(self.arr))))
+                                int(400 + (self.arr[j] * 800 / len(self.arr) / 2)), int(j * 600 / len(self.arr))))
                         self.handle_events()
                     pygame.display.flip()
                     sorted = False
         time.sleep(1)
         self.finale(screen)
+
 
 class SelectionSort(Algorithm):
     def __init__(self, arr):
@@ -93,9 +101,9 @@ class SelectionSort(Algorithm):
     def sort(self, screen):
         smallNumIndex = 0
         for i in range(len(self.arr)):
-            smallNumIndex+= 1
+            smallNumIndex += 1
             if smallNumIndex >= len(self.arr):
-                smallNumIndex = len(self.arr)-1
+                smallNumIndex = len(self.arr) - 1
             self.clear_screen(screen)
             for j in range(i, len(self.arr), 1):
                 if self.arr[j] < self.arr[smallNumIndex]:
@@ -103,7 +111,7 @@ class SelectionSort(Algorithm):
             for x in range(len(self.arr)):
                 for x in range(len(self.arr)):
                     if x < i:
-                        pygame.draw.rect(screen, (100,100,100),
+                        pygame.draw.rect(screen, (100, 100, 100),
                                          [int(400 - (self.arr[x] * 400 / len(self.arr))), int(x * 600 / len(self.arr)),
                                           int(self.arr[x] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
                     elif x == i:
@@ -116,12 +124,13 @@ class SelectionSort(Algorithm):
                                           int(x * 600 / len(self.arr)),
                                           int(self.arr[x] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
                     else:
-                        pygame.draw.rect(screen, (255,255,255),
+                        pygame.draw.rect(screen, (255, 255, 255),
                                          [int(400 - (self.arr[x] * 400 / len(self.arr))), int(x * 600 / len(self.arr)),
                                           int(self.arr[x] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
                 pygame.display.flip()
             self.arr[i], self.arr[smallNumIndex] = self.arr[smallNumIndex], self.arr[i]
         self.finale(screen)
+
 
 class InsertionSort(Algorithm):
     def __init__(self, arr):
@@ -130,9 +139,9 @@ class InsertionSort(Algorithm):
     def sort(self, screen):
         for i in range(1, len(self.arr)):
             x = i
-            while x > 0 and self.arr[x-1] > self.arr[x]:
-                self.arr[x],self.arr[x-1] = self.arr[x-1], self.arr[x]
-                x-=1
+            while x > 0 and self.arr[x - 1] > self.arr[x]:
+                self.arr[x], self.arr[x - 1] = self.arr[x - 1], self.arr[x]
+                x -= 1
                 self.clear_screen(screen)
                 for j in range(len(self.arr)):
                     if j < x:
@@ -148,6 +157,4 @@ class InsertionSort(Algorithm):
                                          [int(400 - (self.arr[j] * 400 / len(self.arr))), int(j * 600 / len(self.arr)),
                                           int(self.arr[j] * 800 / len(self.arr)), int(600 / len(self.arr))], 0)
                 pygame.display.flip()
-
-
-
+        self.finale(screen)
